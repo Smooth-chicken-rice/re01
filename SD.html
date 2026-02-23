@@ -1,11 +1,49 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
+<head>
     <meta charset="utf-8">
-<meta name-"viewport" content-"width-device-width, initial-scale-1" />
-<title>佐证材料</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>验证材料</title>
+    <style>
+        /* 简单美化一下跳转按钮 */
+        .link-btn {
+            display: inline-block;
+            margin: 10px;
+            text-align: center;
+        }
+        .link-btn img {
+            width: 200px; /* 设置图片宽度 */
+            height: auto;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+        .link-btn:hover img {
+            transform: scale(1.05); /* 鼠标悬停放大效果 */
+        }
+    </style>
 </head>
-<body style="margin: e;">
-  <h1>哈哈，新页面</h1>
+<body style="margin: 0;">
+    <h1>哈哈，新页面</h1>
+
+    <!-- 图片跳转按钮区域 -->
+    <div class="link-container">
+        <!-- 跳转到简历页面 -->
+        <a href="pages/resume.html" class="link-btn" target="_blank">
+            <img src="images/resume.png" alt="我的简历">
+            <p>我的简历</p>
+        </a>
+
+        <!-- 跳转到作品集页面 -->
+        <a href="pages/portfolio.html" class="link-btn" target="_blank">
+            <img src="images/portfolio.png" alt="我的作品集">
+            <p>我的作品集</p>
+        </a>
+
+        <!-- 跳转到外部博客 -->
+        <a href="https://your-blog-url.com" class="link-btn" target="_blank">
+            <img src="images/blog.png" alt="我的博客">
+            <p>我的博客</p>
+        </a>
+    </div>
 </body>
 </html>
