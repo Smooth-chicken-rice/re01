@@ -1,218 +1,508 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
- 
 <head>
-    <meta charset="UTF-8" />
-    <!--适配手机端-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>钟文扬的个人网站</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>钟文扬 - 个人简历</title>
     <style>
-      /*全局样式与基础设置*/
-      *{
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Microsoft YaHei",微软雅黑, sans-serif;
-      }
-      body{
-        background-color: #f5f5f5;
-        padding: 20px;
-        line-height: 1.6;
-        color: #333;
-      }
-      /*简历主容器*/
-    .resume-container{
-      max-width: 900px;
-      background: #f5f5f5;
-      margin: 0 auto;
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-    /*标题样式*/
-    h1{
-      text-align: center;
-      font-size: 28px;
-      margin-bottom: 20px;
-      color: #222;
-      border-bottom: 2px solid #06c;
-      padding-bottom: 10px;
-    }
-    h2{
-      font-size: 20px;
-      margin: 25px 0 15px;
-      color: #06c;
-      border-left: #06c 4px solid;
-      padding-left: 10px;
-    }
-    /*个人信息表格*/
-    .info-table{
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 20px;
-    }
-    .info-table td{
-      padding: 8px;
-      font-size: 16px;
-    }
-    /*列表样式*/
-    ul{
-      list-style: none;
-      padding-left: 20px;
-    }
-    ul li{
-      margin: 10px 0;
-      position: relative;
-    }
-    /*列表前小图标*/
-    ul li::before{
-      content: "●";
-      color: #06c;
-      font-size: 12px;
-      position: absolute;
-      left: -15px;
-      top: 5px;
-    }
-    /*工作经历、项目详情样式*/
-    .job-detail{
-      margin: 10px 0 0 20px;
-      font-size: 15px;
-      color: #444rgb(0, 0, 0);
-    }
-    /*底部转跳链接*/
-    .footer-link{
-      margin-top: 40px;
-      padding-top: 20px;
-      border-top: 1px solid #eee;
-      text-align: center;
-    }
-    .footer-link a{
-      color: #06c;
-      text-decoration: none;
-      font-size: 16px;
-      padding: 8px 16px;
-      border: 1px solid #06c;
-      border-radius: 4px;
-      transition: all 0.3s;
-    }
-    /*链接hover效果*/
-    .footer-link a:hover {
-      background: #06c;
-      color: #f5f5f5;
-    }
-    /*响应式：手机端缩小内边距和字体*/
-    @media(max-width: 600px){
-      .resume-container{
-        padding: 20px;
-      }
-      h1{
-        font-size: 24px;
-      }
-      h2{
-        font-size: 18px;
-      }
-      .info-table td{
-        font-size: 14px;
-      }
-    }
+        /* 全局样式重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            scroll-behavior: smooth; /* 平滑滚动 */
+        }
+
+        /* 主色调调整为温和的莫兰迪蓝（低饱和度） */
+        :root {
+            --primary-color: #6A8CAF; /* 温和莫兰迪蓝 */
+            --secondary-color: #f8f9fa; /* 浅灰背景，更柔和 */
+            --text-color: #333;
+            --text-light: #666;
+            --border-color: #e9ecef;
+            --hover-bg: #eef2f5; /* hover背景更浅 */
+        }
+
+        body {
+            color: var(--text-color);
+            background-color: var(--secondary-color);
+            line-height: 1.7;
+        }
+
+        /* 二次元形象顶部展示区 */
+        .avatar-header {
+            width: 100%;
+            background: #fff;
+            padding: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        .avatar-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--hover-bg);
+            margin-bottom: 10px;
+            /* 轻微阴影，增加层次感 */
+            box-shadow: 0 3px 8px rgba(106, 140, 175, 0.15);
+        }
+        .avatar-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        .avatar-subtitle {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        /* 顶部导航栏（调整为和主色调匹配） */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            padding: 0 20px;
+            z-index: 999;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 56px; /* 略窄，更轻盈 */
+        }
+        .navbar-logo {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        .navbar-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin-left: 24px;
+            font-size: 14px;
+            transition: all 0.2s;
+            padding: 8px 0;
+        }
+        .navbar-links a:hover {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+        }
+        .navbar-links a.active {
+            color: var(--primary-color);
+            font-weight: 500;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        /* 主体容器 */
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            display: flex;
+            gap: 20px;
+            padding: 0 20px;
+        }
+
+        /* 侧边栏（锚点导航） */
+        .sidebar {
+            width: 220px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            padding: 20px 0;
+            position: sticky;
+            top: 76px;
+            align-self: flex-start;
+            height: fit-content;
+        }
+        .sidebar-item {
+            padding: 10px 24px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        .sidebar-item:hover {
+            background-color: var(--hover-bg);
+        }
+        .sidebar-item.active {
+            color: var(--primary-color);
+            background-color: rgba(106, 140, 175, 0.1);
+            border-left: 3px solid var(--primary-color);
+        }
+        .sidebar a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* 主内容区 */
+        .main-content {
+            flex: 1;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            padding: 36px; /* 略减内边距，更紧凑 */
+        }
+
+        /* 个人信息卡片（简化，因为顶部已有头像） */
+        .profile-card {
+            text-align: center;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 24px;
+        }
+        .profile-name {
+            font-size: 26px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text-color);
+        }
+        .profile-tag {
+            color: var(--text-light);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        .profile-info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 14px;
+        }
+        .profile-info-item {
+            text-align: left;
+        }
+        .profile-info-item strong {
+            color: var(--primary-color);
+            margin-right: 6px;
+            font-weight: 500;
+        }
+
+        /* 模块通用样式 */
+        .section {
+            margin-bottom: 36px;
+        }
+        .section-title {
+            font-size: 19px;
+            font-weight: 600;
+            margin-bottom: 18px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+        }
+        .section-title::before {
+            content: "";
+            width: 4px;
+            height: 18px;
+            background-color: var(--primary-color);
+            margin-right: 10px;
+            border-radius: 2px;
+        }
+        .section-content {
+            font-size: 15px;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* 工作经历样式（更柔和的时间轴） */
+        .experience-item {
+            margin-bottom: 22px;
+            padding-left: 16px;
+            border-left: 2px solid var(--border-color);
+            position: relative;
+        }
+        .experience-item::before {
+            content: "";
+            width: 10px;
+            height: 10px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            position: absolute;
+            left: -6px;
+            top: 4px;
+            border: 2px solid #fff;
+        }
+        .experience-time {
+            font-size: 13px;
+            color: var(--primary-color); /* 时间用主色，更醒目但不刺眼 */
+            margin-bottom: 4px;
+            font-weight: 500;
+        }
+        .experience-title {
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--text-color);
+            font-size: 15px;
+        }
+        .experience-desc {
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--text-light);
+            margin-left: 8px;
+        }
+        .experience-desc li {
+            margin-bottom: 6px;
+            list-style: none;
+            position: relative;
+        }
+        .experience-desc li::before {
+            content: "●";
+            color: var(--primary-color);
+            font-size: 8px;
+            position: absolute;
+            left: -12px;
+            top: 8px;
+            opacity: 0.8;
+        }
+
+        /* 技能/证书样式（圆角更大，更柔和） */
+        .skill-list, .cert-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .skill-tag, .cert-tag {
+            padding: 6px 16px;
+            background-color: rgba(106, 140, 175, 0.1);
+            color: var(--primary-color);
+            border-radius: 24px; /* 更大圆角 */
+            font-size: 14px;
+            border: 1px solid rgba(106, 140, 175, 0.2);
+        }
+
+        /* 回到顶部按钮（匹配新主色） */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(106, 140, 175, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* 响应式适配 */
+        @media (max-width: 768px) {
+            /* 移动端头像缩小 */
+            .avatar-img {
+                width: 90px;
+                height: 90px;
+            }
+            .avatar-title {
+                font-size: 18px;
+            }
+            
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                position: static;
+                margin-bottom: 20px;
+            }
+            .sidebar-item {
+                display: inline-block;
+                padding: 8px 16px;
+                border-left: none;
+            }
+            .sidebar-item.active {
+                border-left: none;
+                border-bottom: 2px solid var(--primary-color);
+            }
+            .main-content {
+                padding: 20px;
+            }
+            .profile-info {
+                grid-template-columns: 1fr;
+            }
+            .navbar-links a {
+                margin-left: 12px;
+            }
+        }
     </style>
-  </head>
-  <body>
-    <div class="resume-container">
-      <!--简历标题-->
-      <h1>个人简历-钟文扬</h1>
-      <img src="https://smooth-chicken-rice.github.io/re01/生成二次元形象.png" alt="照片" style="width: 100px; height: auto; border-radius: 8px; margin: 0 auto; display: block; margin-bottom: 20px;"> 
-
-      <!--个人基本信息-->
-      <table class="info-table">
-        <tr>
-          <td><strong>性别：</strong>男</td>
-          <td><strong>年龄：</strong>25</td>
-          <td><strong>学校：</strong>韩山师范学院</td>
-          <td><strong>专业：</strong>经济学</td>
-        </tr>
-        <tr>
-          <td><strong>电话：</strong>18680510409</td>
-          <td colspan="3"><strong>邮箱：</strong>3257901396@qq.com</td>
-        </tr>
-      </table>
-
-      <!--个人能力板块-->
-      <h2>个人能力</h2>
-      <ul>
-        <li>
-          <strong>专业知识：</strong>在校期间学习主修课程包括：《微观经济学》、《宏观经济学》、《金融学》、《会计学》、《财政学》、《统计学》、《计量经济学》等，成绩优良。
-        </li>
-        <li>
-          <strong>自学能力：</strong>能较快学习工作要点，擅长DIY电脑主机，目前在读华南师范大学在职本科。
-        </li>
-        <li>
-          <strong>技能：</strong>多次组织安排人员进行活动，有较强组织能力和行动力。
-        </li>
-      </ul>
-
-      <!--工作经历板块-->
-      <h2>工作经历</h2>
-      <ul>
-        <li>
-          <strong>2023.07-2024.07 广东省始兴县沈所镇人民政府（广东省乡村振兴志愿者项目）</strong>
-          <p><strong>职位：</strong>镇执法队干事兼应急办干事</p>
-          <div class="job-detail">
-            1. 处理安全生产案件40余宗，开展安全消防检查20余次，协助排查经营场所安全隐患；外出安全巡查50余次，对重点安全隐患地间歇性巡逻排查；参加执法学习培训5次，持续优化工作方法。<br>
-            2. 参与应急夜班值守25次、应急实地演练3次，雨水天气与上级政府沟通调度10余次，例行巡火10余次，协助救火、洪水救援行动各1次，能胜任高危、熬夜类工作。<br>
-            3. 参与镇污水管道整改项目，协助完善相关资料。<br>
-            4. 耗时2周完成全镇水表使用情况统计记录。<br>
-            5. 协助整理会议资料、布置会场20余次，保障乡镇各类会议顺利开展。
-          </div>
-        </li>
-        <li>
-          <strong>2024.07-2024.12 广东省始兴县罗坝镇人民政府（国家“三支一扶”项目）</strong>
-          <p><strong>职位：</strong>镇人大办公室干事</p>
-          <div class="job-detail">
-            1. 组织县镇人大代表学习培训活动20余次、外出视察活动10余次，组织召开镇一级全体人民代表大会1次；能协调同事协作，高效完成工作任务。<br>
-            2. 整理镇人大代表相关履历资料，做好档案管理工作。<br>
-            3. 收集居民意见建议，形成意见报告并反馈上级，推动相关部门落实整改。<br>
-            4. 协调人大代表与各部门的日常沟通对接工作。<br>
-            5. 参加人大工作相关外出培训3次，提升专业工作能力。
-          </div>
-        </li>
-      </ul>
-
-      <!--荣誉证书板块-->
-      <h2>证书</h2>
-      <ul>
-        <li>大学生英语四级、大学生英语六级</li>
-        <li>全国普通话二级甲等</li>
-        <li>广东省计算机一级</li>
-      </ul>
-
-      <!--自我评价板块-->
-      <h2>自我评价</h2>
-      <h3 style="font-size: 17px; margin: 10px 0 5px; color: #444;">基本素质</h3>
-      <ul>
-        <li>工作认真负责，有效率、有原则</li>
-         <li>熟练使用Office办公软件，沟通能力较强</li>
-        <li>善于灵活处理事务，做事坚守原则</li>
-        <li>责任心强，吃苦耐劳，勇于面对困难</li>
-        <li>乐于接受新事物，具备良好的学习能力</li>
-        <li>动手能力突出，能解决实际问题</li>
-      </ul>
-
-      <h3 style="font-size: 17px; margin: 10px 0 5px; color: #444;">兴趣爱好</h3>
-      <ul>
-        <li>喜好音乐，在校期间多次参加合唱比赛，获校级合唱比赛三等奖</li>
-        <li>喜好钻研电脑组装，多次解决身边朋友家人电脑及家用电器问题</li>
-        <li>喜好研究食谱，时常尝试自己做美食</li>
-      </ul>
-
-      <!--底部转跳链接-->
-    <div class="footer-link">
-      <a href="https://smooth-chicken-rice.github.io/re01/SD.html"target="_blank">佐证材料</a>
+</head>
+<body>
+    <!-- 二次元形象顶部展示区 -->
+    <div class="avatar-header">
+        <img src="image/生成二次元形象.png" alt="钟文扬-二次元形象" class="avatar-img">
+        <div class="avatar-title">钟文扬</div>
+        <div class="avatar-subtitle">经济学 | 基层政务 | 持续成长</div>
     </div>
+
+    <!-- 顶部导航栏 -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">个人简历</div>
+            <div class="navbar-links">
+                <a href="#" class="active">首页</a>
+                <a href="https://smooth-chicken-rice.github.io/re01/SD.html" target="_blank">佐证材料</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主体容器 -->
+    <div class="container">
+        <!-- 侧边栏锚点导航 -->
+        <aside class="sidebar">
+            <a href="#profile"><div class="sidebar-item active">基本信息</div></a>
+            <a href="#ability"><div class="sidebar-item">个人能力</div></a>
+            <a href="#experience"><div class="sidebar-item">工作经历</div></a>
+            <a href="#certificate"><div class="sidebar-item">荣誉证书</div></a>
+            <a href="#self-eval"><div class="sidebar-item">自我评价</div></a>
+        </aside>
+
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <!-- 基本信息 -->
+            <section id="profile" class="section profile-card">
+                <h1 class="profile-name">钟文扬</h1>
+                <p class="profile-tag">经济学专业 | 基层政务工作经验 | 具备组织协调与应急处理能力</p>
+                <div class="profile-info">
+                    <div class="profile-info-item"><strong>性别：</strong>男</div>
+                    <div class="profile-info-item"><strong>年龄：</strong>25</div>
+                    <div class="profile-info-item"><strong>学校：</strong>韩山师范学院</div>
+                    <div class="profile-info-item"><strong>专业：</strong>经济学</div>
+                    <div class="profile-info-item"><strong>电话：</strong>18680510409</div>
+                    <div class="profile-info-item"><strong>邮箱：</strong>3257901396@qq.com</div>
+                </div>
+            </section>
+
+            <!-- 个人能力 -->
+            <section id="ability" class="section">
+                <h2 class="section-title">个人能力</h2>
+                <div class="section-content">
+                    <div class="skill-list">
+                        <div class="skill-tag">微观/宏观经济学</div>
+                        <div class="skill-tag">金融学/会计学</div>
+                        <div class="skill-tag">统计学/计量经济学</div>
+                        <div class="skill-tag">快速学习能力</div>
+                        <div class="skill-tag">组织协调能力</div>
+                        <div class="skill-tag">应急处理能力</div>
+                        <div class="skill-tag">Office办公软件</div>
+                        <div class="skill-tag">沟通表达能力</div>
+                    </div>
+                    <p style="margin-top: 16px;">
+                        在校期间主修经济学核心课程，成绩优良；具备DIY电脑主机实操能力，目前在读华南师范大学在职本科；多次组织人员开展活动，行动力与组织能力突出。
+                    </p>
+                </div>
+            </section>
+
+            <!-- 工作经历 -->
+            <section id="experience" class="section">
+                <h2 class="section-title">工作经历</h2>
+                <div class="section-content">
+                    <div class="experience-item">
+                        <div class="experience-time">2023.07 - 2024.06</div>
+                        <div class="experience-title">广东省始兴县沈所镇人民政府 | 执法队干事兼应急办干事（乡村振兴志愿者）</div>
+                        <ul class="experience-desc">
+                            <li>处理安全生产案件40余宗，开展安全消防检查16次，外出安全巡查50余次，排查经营场所安全隐患；</li>
+                            <li>参与应急夜班值守25次、应急演练3次，协助洪水救援1次，可胜任高危/熬夜类工作；</li>
+                            <li>参与镇污水管道整改项目，完成全镇水表使用情况统计，协助整理会议资料20余次。</li>
+                        </ul>
+                    </div>
+                    <div class="experience-item">
+                        <div class="experience-time">2024.07 - 2024.11</div>
+                        <div class="experience-title">广东省始兴县罗坝镇人民政府 | 人大办公室干事（三支一扶）</div>
+                        <ul class="experience-desc">
+                            <li>组织县镇人大代表学习培训20次、外出视察16次，召开镇人大全体会议1次；</li>
+                            <li>整理人大代表履历资料，收集居民意见并推动整改，协调部门日常沟通对接；</li>
+                            <li>参加人大工作外出培训3次，持续提升专业工作能力。</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 技能证书 -->
+            <section id="certificate" class="section">
+                <h2 class="section-title">技能证书</h2>
+                <div class="section-content">
+                    <div class="cert-list">
+                        <div class="cert-tag">大学英语四级证书</div>
+                        <div class="cert-tag">大学英语六级证书</div>
+                        <div class="cert-tag">普通话二级甲等证书</div>
+                        <div class="cert-tag">广东省计算机一级证书</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 自我评价 -->
+            <section id="self-eval" class="section">
+                <h2 class="section-title">自我评价</h2>
+                <div class="section-content">
+                    <h3 style="font-size: 16px; margin-bottom: 8px; color: var(--text-color);">基本素质</h3>
+                    <p style="margin-bottom: 12px;">
+                        工作认真负责、高效有原则，熟练使用Office办公软件，沟通能力强；善于灵活处理事务，责任心强、吃苦耐劳，勇于面对困难；乐于接受新事物，学习能力与动手能力突出。
+                    </p>
+                    <h3 style="font-size: 16px; margin-bottom: 8px; color: var(--text-color);">性格特点</h3>
+                    <p style="margin-bottom: 12px;">乐观向上、活泼开朗，为人正派、敢作敢当。</p>
+                    <h3 style="font-size: 16px; margin-bottom: 8px; color: var(--text-color);">兴趣爱好</h3>
+                    <p>
+                        喜好音乐，在校获合唱比赛三等奖；擅长动手组装电脑主机，多次解决身边人电脑/家电故障问题。
+                    </p>
+                </div>
+            </section>
+        </main>
     </div>
-  </body>
+
+    <!-- 回到顶部按钮 -->
+    <div class="back-to-top" id="backToTop">↑</div>
+
+    <script>
+        // 回到顶部按钮逻辑
+        const backToTopBtn = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // 侧边栏锚点激活逻辑
+        const sections = document.querySelectorAll('.section');
+        const sidebarItems = document.querySelectorAll('.sidebar-item');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+            sidebarItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.parentElement.getAttribute('href') === `#${current}`) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
 </html>
+
 
 
 
