@@ -18,9 +18,9 @@
         :root {  
             --primary-color: #6A8CAF; /* 温和莫兰迪蓝 */
             --secondary-color: #f8f9fa; /* 浅灰背景，更柔和 */
-            --text-color: #333;   ——文本颜色:# 333;
-            --text-light: #666;   ——文字光线:# 666;
-            --border-color: #e9ecef;   ——边框颜色:# e9ecef;
+            --text-color: #333; /* 文本主色 */
+            --text-light: #666; /* 文本浅色调 */
+            --border-color: #e9ecef; /* 边框颜色 */
             --hover-bg: #eef2f5; /* hover背景更浅 */
         }
 
@@ -338,71 +338,72 @@
                 margin-left: 12px;
             }
         }
+        
         /* 音乐播放按钮 - 固定左上方 */
-    .music-player {
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        z-index: 9999; /* 置顶显示，不被其他内容遮挡 */
-    }
-    .music-btn {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        border: 2px solid var(--primary-color);
-        background-color: rgba(255, 255, 255, 0.9);
-        color: var(--primary-color);
-        font-size: 20px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 2px 8px rgba(106, 140, 175, 0.3);
-        transition: all 0.3s ease;
-    }
-    .music-btn:hover {
-        transform: scale(1.1);
-        background-color: var(--primary-color);
-        color: #fff;
-    }
-    /* 暂停图标默认隐藏 */
-    .icon-pause {
-        display: none;
-    }
-    /* 播放状态切换 */
-    .music-btn.playing .icon-play {
-        display: none;
-    }
-    .music-btn.playing .icon-pause {
-        display: inline;
-    }
-    /* 移动端适配 */
-    @media (max-width: 768px) {
         .music-player {
-            top: 15px;
-            left: 15px;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 9999; /* 置顶显示，不被其他内容遮挡 */
         }
         .music-btn {
-            width: 40px;
-            height: 40px;
-            font-size: 16px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid var(--primary-color);
+            background-color: rgba(255, 255, 255, 0.9);
+            color: var(--primary-color);
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(106, 140, 175, 0.3);
+            transition: all 0.3s ease;
+            border: none; /* 清除默认边框，避免样式冲突 */
         }
-    }
+        .music-btn:hover {
+            transform: scale(1.1);
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+        /* 暂停图标默认隐藏 */
+        .icon-pause {
+            display: none;
+        }
+        /* 播放状态切换 */
+        .music-btn.playing .icon-play {
+            display: none;
+        }
+        .music-btn.playing .icon-pause {
+            display: inline;
+        }
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .music-player {
+                top: 15px;
+                left: 15px;
+            }
+            .music-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+        }
     </style>
 </head>
 <body>
     <!-- 音乐播放控件 -->
-<div class="music-player">
-    <button id="music-btn" class="music-btn">
-        <span class="icon-play">🎵</span>
-        <span class="icon-pause">⏸</span>
-    </button>
-    <!-- 音频源（隐藏） -->
-    <audio id="bg-music" loop preload="auto">
-        <!-- 替换为你的音乐文件路径，支持mp3格式 -->
-        <source src="https://github.com/Smooth-chicken-rice/re01/blob/main/Music/lemon.mp3" type="audio/mpeg">
-    </audio>
-</div>
+    <div class="music-player">
+        <button id="music-btn" class="music-btn">
+            <span class="icon-play">🎵</span>
+            <span class="icon-pause">⏸</span>
+        </button>
+        <!-- 音频源：用raw链接，禁止预加载 -->
+        <audio id="bg-music" loop preload="none">
+            <source src="https://raw.githubusercontent.com/Smooth-chicken-rice/re01/main/Music/lemon.mp3" type="audio/mpeg">
+        </audio>
+    </div>
 
     <!-- 二次元形象顶部展示区 -->
     <div class="avatar-header">
@@ -566,68 +567,44 @@
                 }
             });
         });
-         // 音乐播放逻辑
-    const musicBtn = document.getElementById('music-btn');
-    const bgMusic = document.getElementById('bg-music');
-    
-    // 尝试自动播放（静音自动播放，规避浏览器限制）
-    function autoPlayMusic() {
-        bgMusic.volume = 0.5; // 设置音量（0-1）
-        // 先静音播放，再取消静音（兼容大部分浏览器）
-        bgMusic.muted = true;
-        bgMusic.play().then(() => {
-            bgMusic.muted = false; // 播放成功后取消静音
-            musicBtn.classList.add('playing');
-        }).catch(err => {
-            console.log('自动播放失败，请手动点击播放:', err);
-            // 自动播放失败时，按钮保持未播放状态
-            musicBtn.classList.remove('playing');
-        });
-    }
 
-    // 页面加载完成后尝试自动播放
-    window.addEventListener('DOMContentLoaded', () => {
-        autoPlayMusic();
-        
-        // 点击按钮切换播放/暂停
-        musicBtn.addEventListener('click', () => {
-            if (bgMusic.paused) {
-                bgMusic.play();
-                musicBtn.classList.add('playing');
-            } else {
-                bgMusic.pause();
-                musicBtn.classList.remove('playing');
-            }
-        });
-    });
+        // 纯手动音乐播放逻辑（彻底规避浏览器限制）
+        document.addEventListener('DOMContentLoaded', function() {
+            const musicBtn = document.getElementById('music-btn');
+            const bgMusic = document.getElementById('bg-music');
+            let isLoaded = false; // 标记音频是否加载完成
 
-    // 兼容微信浏览器：微信页面加载完成后再次尝试播放
-    document.addEventListener('WeixinJSBridgeReady', () => {
-        autoPlayMusic();
-    });
+            // 点击按钮触发播放/暂停
+            musicBtn.addEventListener('click', function() {
+                // 第一次点击：加载音频并播放
+                if (!isLoaded) {
+                    bgMusic.load(); // 手动加载音频
+                    bgMusic.volume = 0.3; // 音量适中
+
+                    // 加载完成后自动播放
+                    bgMusic.addEventListener('canplaythrough', function() {
+                        isLoaded = true;
+                        bgMusic.play();
+                        musicBtn.classList.add('playing');
+                    }, { once: true });
+
+                    // 加载失败提示
+                    bgMusic.addEventListener('error', function() {
+                        alert('音乐加载失败，请检查文件路径！');
+                    }, { once: true });
+                    return;
+                }
+
+                // 非第一次点击：切换播放/暂停
+                if (bgMusic.paused) {
+                    bgMusic.play();
+                    musicBtn.classList.add('playing');
+                } else {
+                    bgMusic.pause();
+                    musicBtn.classList.remove('playing');
+                }
+            });
+        });
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
