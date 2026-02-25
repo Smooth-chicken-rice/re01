@@ -176,8 +176,9 @@
     .carousel-slide img {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: contain;
         transition: transform 0.3s ease;
+        background-color:#f0f0f0;
     }
     .carousel-container:hover .carousel-slide img {
         transform: scale(1.03); /* 图片轻微放大 */
@@ -239,15 +240,16 @@
     /* 单图样式（组织活动） */
     .tab-img {
         width: 100%;
-        height: 220px;
+        height: 100%;
         border-radius: 6px;
         overflow: hidden;
     }
     .tab-img img {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: contain;
         transition: transform 0.3s ease;
+        background-color:#f0f0f0;
     }
     .tab-content-wrap:hover .tab-img img {
         transform: scale(1.05);
