@@ -1,4 +1,4 @@
-<!-- 技趣兼备板块 -->
+<!-- 技能与兴趣板块 -->
 <section id="skills-hobbies" class="section">
     <h2 class="section-title">技能与兴趣</h2>
     <div class="section-content">
@@ -11,33 +11,58 @@
         
         <!-- 内容容器 -->
         <div class="tab-content">
-            <!-- 电脑组装 -->
+            <!-- 电脑组装（6张图轮播） -->
             <div class="tab-panel active" id="computer-panel">
                 <div class="tab-content-wrap">
-                    <div class="tab-img">
-                        <img src="image/c1.jpg" alt="电脑组装实操" loading="lazy">
-                        <img src="image/c2.jpg" alt="电脑组装实操" loading="lazy">
-                        <img src="image/c3.jpg" alt="电脑组装实操" loading="lazy">
-                        <img src="image/c4.jpg" alt="电脑组装实操" loading="lazy">
-                        <img src="image/c5.jpg" alt="电脑组装实操" loading="lazy">
-                        <img src="image/c6.jpg" alt="电脑组装实操" loading="lazy">
+                    <!-- 轮播容器 -->
+                    <div class="carousel-container">
+                        <div class="carousel-wrapper">
+                            <div class="carousel-slide"><img src="image/c1.jpg" alt="电脑组装实操1" loading="lazy"></div>
+                            <div class="carousel-slide"><img src="image/c2.jpg" alt="电脑组装实操2" loading="lazy"></div>
+                            <div class="carousel-slide"><img src="image/c3.jpg" alt="电脑组装实操3" loading="lazy"></div>
+                            <div class="carousel-slide"><img src="image/c4.jpg" alt="电脑组装实操4" loading="lazy"></div>
+                            <div class="carousel-slide"><img src="image/c5.jpg" alt="电脑组装实操5" loading="lazy"></div>
+                            <div class="carousel-slide"><img src="image/c6.jpg" alt="电脑组装实操6" loading="lazy"></div>
+                        </div>
+                        <!-- 轮播按钮 -->
+                        <button class="carousel-btn prev-btn">&lt;</button>
+                        <button class="carousel-btn next-btn">&gt;</button>
+                        <!-- 轮播指示器 -->
+                        <div class="carousel-indicators">
+                            <span class="indicator active" data-index="0"></span>
+                            <span class="indicator" data-index="1"></span>
+                            <span class="indicator" data-index="2"></span>
+                            <span class="indicator" data-index="3"></span>
+                            <span class="indicator" data-index="4"></span>
+                            <span class="indicator" data-index="5"></span>
+                        </div>
                     </div>
                     <div class="tab-text">
                         <h3>电脑组装</h3>
                         <p class="tab-desc">
                             具备DIY电脑主机的实操能力，熟悉各类硬件（CPU、主板、显卡、内存等）的适配性与安装流程，能够独立完成从配件选型、组装调试到系统安装的全流程。曾为身边亲友组装/维修电脑20+台，解决各类硬件故障、系统问题，动手能力突出。
                         </p>
-                       
                     </div>
                 </div>
             </div>
             
-            <!-- 积木拼装 -->
+            <!-- 积木拼装（2张图轮播） -->
             <div class="tab-panel" id="brick-panel">
                 <div class="tab-content-wrap">
-                    <div class="tab-img">
-                        <img src="image/b1.jpg" alt="积木拼装作品" loading="lazy">
-                        <img src="image/b2.jpg" alt="积木拼装作品" loading="lazy">
+                    <!-- 轮播容器 -->
+                    <div class="carousel-container">
+                        <div class="carousel-wrapper">
+                            <div class="carousel-slide"><img src="image/b1.jpg" alt="积木拼装作品1" loading="lazy"></div>
+                            <div class="carousel-slide"><img src="image/b2.jpg" alt="积木拼装作品2" loading="lazy"></div>
+                        </div>
+                        <!-- 轮播按钮 -->
+                        <button class="carousel-btn prev-btn">&lt;</button>
+                        <button class="carousel-btn next-btn">&gt;</button>
+                        <!-- 轮播指示器 -->
+                        <div class="carousel-indicators">
+                            <span class="indicator active" data-index="0"></span>
+                            <span class="indicator" data-index="1"></span>
+                        </div>
                     </div>
                     <div class="tab-text">
                         <h3>积木拼装</h3>
@@ -48,7 +73,7 @@
                 </div>
             </div>
             
-            <!-- 组织活动 -->
+            <!-- 组织活动（单图） -->
             <div class="tab-panel" id="activity-panel">
                 <div class="tab-content-wrap">
                     <div class="tab-img">
@@ -68,12 +93,13 @@
 
 <!-- 新增对应的CSS样式（复制到<style>标签内） -->
 <style>
-    /* 技趣兼备板块 - 标签样式 */
+    /* 技能与兴趣板块 - 标签样式 */
     .tab-nav {
         display: flex;
         gap: 12px;
         margin-bottom: 20px;
         flex-wrap: wrap;
+        justify-content: center; /* 移动端标签居中 */
     }
     .tab-item {
         padding: 8px 20px;
@@ -84,6 +110,7 @@
         font-size: 14px;
         transition: all 0.3s ease;
         border: 1px solid transparent;
+        white-space: nowrap; /* 标签文字不换行 */
     }
     .tab-item.active {
         background-color: rgba(106, 140, 175, 0.1);
@@ -97,7 +124,7 @@
     /* 内容面板样式 */
     .tab-content {
         position: relative;
-        min-height: 280px;
+        min-height: 320px; /* 适配轮播高度 */
         overflow: hidden;
     }
     .tab-panel {
@@ -124,11 +151,95 @@
         background-color: var(--secondary-color);
         padding: 20px;
         border-radius: 8px;
+        flex-direction: column; /* 移动端默认上下布局 */
     }
+
+    /* 轮播容器样式 */
+    .carousel-container {
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+        border-radius: 6px;
+        height: 220px; /* 移动端轮播高度 */
+    }
+    .carousel-wrapper {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.5s ease; /* 轮播渐变过渡 */
+    }
+    .carousel-slide {
+        flex: 0 0 100%;
+        width: 100%;
+        height: 100%;
+    }
+    .carousel-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+    .carousel-container:hover .carousel-slide img {
+        transform: scale(1.03); /* 图片轻微放大 */
+    }
+
+    /* 轮播按钮 */
+    .carousel-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 40px; /* 手机端按钮放大，方便点击 */
+        height: 40px;
+        border-radius: 50%;
+        border: none;
+        background-color: rgba(255, 255, 255, 0.8);
+        color: var(--primary-color);
+        font-size: 18px;
+        cursor: pointer;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .prev-btn {
+        left: 10px;
+    }
+    .next-btn {
+        right: 10px;
+    }
+    .carousel-btn:hover {
+        background-color: var(--primary-color);
+        color: #fff;
+    }
+
+    /* 轮播指示器 */
+    .carousel-indicators {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 8px;
+    }
+    .indicator {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.6);
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    .indicator.active {
+        background-color: var(--primary-color);
+        width: 20px;
+        border-radius: 4px; /* 激活态变椭圆，更醒目 */
+    }
+
+    /* 单图样式（组织活动） */
     .tab-img {
-        width: 30%;
-        min-width: 200px;
-        height: 200px;
+        width: 100%;
+        height: 220px;
         border-radius: 6px;
         overflow: hidden;
     }
@@ -141,44 +252,72 @@
     .tab-content-wrap:hover .tab-img img {
         transform: scale(1.05);
     }
+
+    /* 文字区域 */
     .tab-text {
-        flex: 1;
+        width: 100%;
+        padding: 10px 0;
     }
     .tab-text h3 {
         font-size: 18px;
         color: var(--primary-color);
         margin-bottom: 12px;
         font-weight: 600;
+        text-align: center; /* 移动端文字居中 */
     }
     .tab-desc {
         font-size: 14px;
         color: var(--text-light);
         line-height: 1.8;
+        text-align: justify; /* 文字两端对齐 */
+        padding: 0 5px;
     }
 
-    /* 移动端适配 */
-    @media (max-width: 768px) {
+    /* PC端适配（768px以上） */
+    @media (min-width: 768px) {
         .tab-content-wrap {
-            flex-direction: column;
-            text-align: center;
+            flex-direction: row; /* PC端图文左右分栏 */
         }
-        .tab-img {
-            width: 100%;
-            min-width: unset;
-            height: 180px;
+        .carousel-container, .tab-img {
+            width: 40%;
+            height: 250px;
+            min-width: 300px;
         }
         .tab-text {
-            width: 100%;
+            flex: 1;
+            padding: 0 10px;
         }
-        .tab-nav {
-            justify-content: center;
+        .tab-text h3 {
+            text-align: left; /* PC端文字左对齐 */
+        }
+        .tab-desc {
+            padding: 0;
+        }
+        .carousel-btn {
+            width: 36px;
+            height: 36px;
+            font-size: 16px;
+        }
+    }
+
+    /* 小屏手机适配（480px以下） */
+    @media (max-width: 480px) {
+        .carousel-container, .tab-img {
+            height: 180px; /* 更小屏缩短图片高度 */
+        }
+        .tab-content-wrap {
+            padding: 15px;
+        }
+        .tab-desc {
+            font-size: 13px; /* 小屏文字缩小 */
+            line-height: 1.7;
         }
     }
 </style>
 
 <!-- 切换逻辑JS（复制到页面底部<script>标签内，和现有JS代码合并） -->
 <script>
-    // 技趣兼备板块切换逻辑
+    // 技能与兴趣板块标签切换逻辑
     const tabItems = document.querySelectorAll('.tab-item');
     const tabPanels = document.querySelectorAll('.tab-panel');
     
@@ -192,6 +331,98 @@
             item.classList.add('active');
             const tabId = item.getAttribute('data-tab');
             document.getElementById(`${tabId}-panel`).classList.add('active');
+            
+            // 切换标签后重置轮播到第一张
+            if (tabId === 'computer' || tabId === 'brick') {
+                currentSlideIndex[tabId] = 0;
+                updateCarousel(tabId);
+            }
         });
     });
+
+    // 轮播索引管理
+    const currentSlideIndex = {
+        computer: 0,
+        brick: 0
+    };
+
+    // 更新轮播位置
+    function updateCarousel(tabType) {
+        const wrapper = document.querySelector(`#${tabType}-panel .carousel-wrapper`);
+        const slides = document.querySelectorAll(`#${tabType}-panel .carousel-slide`);
+        const indicators = document.querySelectorAll(`#${tabType}-panel .indicator`);
+        
+        if (!wrapper || !slides.length) return;
+        
+        const slideWidth = slides[0].offsetWidth;
+        wrapper.style.transform = `translateX(-${currentSlideIndex[tabType] * slideWidth}px)`;
+        
+        // 更新指示器状态
+        indicators.forEach((ind, idx) => {
+            ind.classList.toggle('active', idx === currentSlideIndex[tabType]);
+        });
+    }
+
+    // 电脑组装轮播控制
+    const computerPrev = document.querySelector('#computer-panel .prev-btn');
+    const computerNext = document.querySelector('#computer-panel .next-btn');
+    const computerIndicators = document.querySelectorAll('#computer-panel .indicator');
+    const computerSlides = document.querySelectorAll('#computer-panel .carousel-slide');
+
+    computerPrev?.addEventListener('click', () => {
+        currentSlideIndex.computer = (currentSlideIndex.computer - 1 + computerSlides.length) % computerSlides.length;
+        updateCarousel('computer');
+    });
+
+    computerNext?.addEventListener('click', () => {
+        currentSlideIndex.computer = (currentSlideIndex.computer + 1) % computerSlides.length;
+        updateCarousel('computer');
+    });
+
+    computerIndicators.forEach((ind, idx) => {
+        ind.addEventListener('click', () => {
+            currentSlideIndex.computer = idx;
+            updateCarousel('computer');
+        });
+    });
+
+    // 积木拼装轮播控制
+    const brickPrev = document.querySelector('#brick-panel .prev-btn');
+    const brickNext = document.querySelector('#brick-panel .next-btn');
+    const brickIndicators = document.querySelectorAll('#brick-panel .indicator');
+    const brickSlides = document.querySelectorAll('#brick-panel .carousel-slide');
+
+    brickPrev?.addEventListener('click', () => {
+        currentSlideIndex.brick = (currentSlideIndex.brick - 1 + brickSlides.length) % brickSlides.length;
+        updateCarousel('brick');
+    });
+
+    brickNext?.addEventListener('click', () => {
+        currentSlideIndex.brick = (currentSlideIndex.brick + 1) % brickSlides.length;
+        updateCarousel('brick');
+    });
+
+    brickIndicators.forEach((ind, idx) => {
+        ind.addEventListener('click', () => {
+            currentSlideIndex.brick = idx;
+            updateCarousel('brick');
+        });
+    });
+
+    // 窗口大小变化时重置轮播（适配屏幕旋转）
+    window.addEventListener('resize', () => {
+        updateCarousel('computer');
+        updateCarousel('brick');
+    });
+
+    // 可选：自动轮播（3秒切换一次，不想自动轮播可删除这段）
+    setInterval(() => {
+        if (document.querySelector('#computer-panel').classList.contains('active')) {
+            currentSlideIndex.computer = (currentSlideIndex.computer + 1) % computerSlides.length;
+            updateCarousel('computer');
+        } else if (document.querySelector('#brick-panel').classList.contains('active')) {
+            currentSlideIndex.brick = (currentSlideIndex.brick + 1) % brickSlides.length;
+            updateCarousel('brick');
+        }
+    }, 3000);
 </script>
