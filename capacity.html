@@ -1,0 +1,191 @@
+<!-- 技趣兼备板块 -->
+<section id="skills-hobbies" class="section">
+    <h2 class="section-title">技能与兴趣</h2>
+    <div class="section-content">
+        <!-- 切换标签 -->
+        <div class="tab-nav">
+            <div class="tab-item active" data-tab="computer">电脑组装</div>
+            <div class="tab-item" data-tab="brick">积木拼装</div>
+            <div class="tab-item" data-tab="activity">组织活动</div>
+        </div>
+        
+        <!-- 内容容器 -->
+        <div class="tab-content">
+            <!-- 电脑组装 -->
+            <div class="tab-panel active" id="computer-panel">
+                <div class="tab-content-wrap">
+                    <div class="tab-img">
+                        <img src="image/computer.jpg" alt="电脑组装实操" loading="lazy">
+                    </div>
+                    <div class="tab-text">
+                        <h3>电脑组装</h3>
+                        <p class="tab-desc">
+                            具备DIY电脑主机的实操能力，熟悉各类硬件（CPU、主板、显卡、内存等）的适配性与安装流程，能够独立完成从配件选型、组装调试到系统安装的全流程。曾为身边亲友组装/维修电脑20+台，解决各类硬件故障、系统问题，动手能力突出。
+                        </p>
+                       
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 积木拼装 -->
+            <div class="tab-panel" id="brick-panel">
+                <div class="tab-content-wrap">
+                    <div class="tab-img">
+                        <img src="image/brick.jpg" alt="积木拼装作品" loading="lazy">
+                    </div>
+                    <div class="tab-text">
+                        <h3>积木拼装</h3>
+                        <p class="tab-desc">
+                            爱好积木拼装，擅长复杂机械组、建筑类积木的拼接，具备耐心和空间思维能力。完成多款高难度积木拼装（如乐高机械组、国风建筑积木），拼装过程锻炼了细节把控、逻辑拆解与专注力，成品可作为摆件展示。
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 组织活动 -->
+            <div class="tab-panel" id="activity-panel">
+                <div class="tab-content-wrap">
+                    <div class="tab-img">
+                        <img src="image/activity.jpg" alt="组织活动现场" loading="lazy">
+                    </div>
+                    <div class="tab-text">
+                        <h3>组织活动</h3>
+                        <p class="tab-desc">
+                            具备丰富的活动组织协调能力，在职期间组织县镇人大代表学习培训20次、外出视察16次，在校期间参与组织校创新创业比赛。能够独立完成活动策划、人员统筹、流程把控与后续总结，擅长跨部门沟通，确保活动高效落地。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 新增对应的CSS样式（复制到<style>标签内） -->
+<style>
+    /* 技趣兼备板块 - 标签样式 */
+    .tab-nav {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+    }
+    .tab-item {
+        padding: 8px 20px;
+        background-color: var(--secondary-color);
+        color: var(--text-color);
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        border: 1px solid transparent;
+    }
+    .tab-item.active {
+        background-color: rgba(106, 140, 175, 0.1);
+        color: var(--primary-color);
+        border-color: var(--primary-color);
+    }
+    .tab-item:hover:not(.active) {
+        background-color: var(--hover-bg);
+    }
+
+    /* 内容面板样式 */
+    .tab-content {
+        position: relative;
+        min-height: 280px;
+        overflow: hidden;
+    }
+    .tab-panel {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.5s ease;
+        transform: translateY(10px);
+    }
+    .tab-panel.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    /* 图文布局 */
+    .tab-content-wrap {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        background-color: var(--secondary-color);
+        padding: 20px;
+        border-radius: 8px;
+    }
+    .tab-img {
+        width: 30%;
+        min-width: 200px;
+        height: 200px;
+        border-radius: 6px;
+        overflow: hidden;
+    }
+    .tab-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+    .tab-content-wrap:hover .tab-img img {
+        transform: scale(1.05);
+    }
+    .tab-text {
+        flex: 1;
+    }
+    .tab-text h3 {
+        font-size: 18px;
+        color: var(--primary-color);
+        margin-bottom: 12px;
+        font-weight: 600;
+    }
+    .tab-desc {
+        font-size: 14px;
+        color: var(--text-light);
+        line-height: 1.8;
+    }
+
+    /* 移动端适配 */
+    @media (max-width: 768px) {
+        .tab-content-wrap {
+            flex-direction: column;
+            text-align: center;
+        }
+        .tab-img {
+            width: 100%;
+            min-width: unset;
+            height: 180px;
+        }
+        .tab-text {
+            width: 100%;
+        }
+        .tab-nav {
+            justify-content: center;
+        }
+    }
+</style>
+
+<!-- 切换逻辑JS（复制到页面底部<script>标签内，和现有JS代码合并） -->
+<script>
+    // 技趣兼备板块切换逻辑
+    const tabItems = document.querySelectorAll('.tab-item');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+    
+    tabItems.forEach(item => {
+        item.addEventListener('click', () => {
+            // 移除所有active状态
+            tabItems.forEach(ti => ti.classList.remove('active'));
+            tabPanels.forEach(tp => tp.classList.remove('active'));
+            
+            // 添加当前active状态
+            item.classList.add('active');
+            const tabId = item.getAttribute('data-tab');
+            document.getElementById(`${tabId}-panel`).classList.add('active');
+        });
+    });
+</script>
